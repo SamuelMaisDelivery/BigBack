@@ -54,9 +54,11 @@ public class MoradorService {
     }
 
     @Transactional
-    public void delete(moradorDB morador) {
-        moradorDBRepository.delete(morador);
+    public void deleteById(Long id) {
+        moradorDBRepository.deleteById(id);
     }
-
+    public Optional<moradorDB> findEntityById(long id) {
+        return moradorDBRepository.findById(id);
+    }
 
 }

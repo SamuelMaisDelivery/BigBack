@@ -55,9 +55,10 @@ public class MoradorController {
 
     @DeleteMapping("/{id}")
     public Object deleteMorador(@PathVariable long id) {
-        return moradorService.findById(id).map(morador -> {
-            moradorService.delete(morador);
-            return ResponseEntity.ok("Morador deletado com sucesso");
-        }).orElse(ResponseEntity.status(HttpStatus.NO_CONTENT).body("Morador não encontrado"));
+        if (!moradorService.findEntityById(id).isPresent()) {
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Morador não encontrado");
+        }
+        moradorService.deleteById(id);
+        return ResponseEntity.ok("Morador deletado com sucesso");
     }
 }
