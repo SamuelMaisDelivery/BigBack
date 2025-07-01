@@ -23,7 +23,7 @@ public class AreaComumDB  implements Serializable {
     @Column(nullable = false)
 
     private boolean disponivel;
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "TINYINT(1)")
 
     @OneToMany(mappedBy = "area", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
